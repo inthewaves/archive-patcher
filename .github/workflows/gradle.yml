@@ -2,7 +2,7 @@ name: Publish via CI
 
 on:
   push:
-    branches: [ master ]
+    tags: ["**"]
 
 jobs:
   build:
@@ -19,9 +19,5 @@ jobs:
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew generator:assemble applier:assemble
-    - name: Publish generator
-      run: ./gradlew generator:publishAllPublicationsToGitHubPackagesRepository
-    - name: Publish applier
-      run: ./gradlew applier:publishAllPublicationsToGitHubPackagesRepository
+    - name: Publish library
+      run: ./gradlew publishAllPublicationsToGitHubPackagesRepository

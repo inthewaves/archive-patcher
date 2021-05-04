@@ -10,6 +10,8 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'maven-publish'
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -78,4 +80,47 @@ artifacts {
     archives jar
     archives sourcesJar
     archives javadocJar
+}
+
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/inthewaves/archive-patcher")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GHACTOR")
+                password = project.findProperty("gpr.key") ?: System.getenv("GHTOKEN")
+            }
+        }
+    }
+
+    publications {
+        archivePatcher(MavenPublication) {
+            from components.java
+            groupId 'pm.inthewaves'
+            artifactId 'archive-patcher'
+            version this.version
+
+            pom {
+                name = 'archive-patcher'
+                description = 'Archive patcher library (fork)'
+                url = 'https://github.com/inthewaves/archive-patcher'
+
+                scm {
+                    url = 'scm:git@github.com:inthewaves/archive-patcher.git'
+                    connection = 'scm:git@github.com:inthewaves/archive-patcher.git'
+                    developerConnection = 'scm:git@github.com:inthewaves/archive-patcher.git'
+                }
+
+                licenses {
+                    license {
+                        name = 'Apache-2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.html'
+                        distribution = 'repo'
+                    }
+                }
+            }
+        }
+    }
 }
