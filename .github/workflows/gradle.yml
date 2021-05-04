@@ -1,0 +1,27 @@
+name: Publish via CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GHTOKEN: ${{ secrets.GHTOKEN }}
+      GHACTOR: ${{ secrets.GHACTOR }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'
+        distribution: 'adopt'
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew generator:assemble applier:assemble
+    - name: Publish generator
+      run: ./gradlew generator:publishAllPublicationsToGitHubPackagesRepository
+    - name: Publish applier
+      run: ./gradlew applier:publishAllPublicationsToGitHubPackagesRepository
