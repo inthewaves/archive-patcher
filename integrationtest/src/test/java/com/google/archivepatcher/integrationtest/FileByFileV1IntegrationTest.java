@@ -23,6 +23,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -116,9 +117,9 @@ public class FileByFileV1IntegrationTest {
 
   @Before
   public void setUp() throws IOException {
-    oldFile = File.createTempFile("fbf_test", "old");
+    oldFile = Files.createTempFile("fbf_test", "old").toFile();
     oldFile.deleteOnExit();
-    newFile = File.createTempFile("fbf_test", "new");
+    newFile = Files.createTempFile("fbf_test", "new").toFile();
     newFile.deleteOnExit();
     tempDir = oldFile.getParentFile();
   }

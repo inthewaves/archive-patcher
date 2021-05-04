@@ -3,7 +3,7 @@
 apply plugin: 'java'
 
 dependencies {
-    compile 'junit:junit:4.12'
+    compile 'junit:junit:4.13.2'
     compile project(':shared')
 }
 // EOF

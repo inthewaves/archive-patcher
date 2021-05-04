@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -54,7 +56,7 @@ public class BsPatchTest {
     buffer1 = new byte[6];
     buffer2 = new byte[6];
     try {
-      oldFile = File.createTempFile("archive_patcher", "old");
+      oldFile = Files.createTempFile("archive_patcher", "old").toFile();
       oldFile.deleteOnExit();
     } catch (IOException e) {
       if (oldFile != null) {
@@ -688,7 +690,7 @@ public class BsPatchTest {
    * @throws IOException if unable to complete the copy
    */
   private void copyToOldFile(String testDataFileName) throws IOException {
-    oldFile = File.createTempFile("archive_patcher", "temp");
+    oldFile = Files.createTempFile("archive_patcher", "temp").toFile();
     Assert.assertNotNull("cant create file!", oldFile);
     byte[] buffer = readTestData(testDataFileName);
     FileOutputStream out = new FileOutputStream(oldFile);

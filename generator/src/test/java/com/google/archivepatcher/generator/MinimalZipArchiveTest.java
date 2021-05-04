@@ -27,6 +27,7 @@ import org.junit.runners.JUnit4;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.zip.CRC32;
 
@@ -42,7 +43,7 @@ public class MinimalZipArchiveTest {
   @Before
   public void setup() throws Exception {
     unitTestZipArchive = UnitTestZipArchive.makeTestZip();
-    tempFile = File.createTempFile("MinimalZipArchiveTest", "zip");
+    tempFile = Files.createTempFile("MinimalZipArchiveTest", "zip").toFile();
     tempFile.deleteOnExit();
     try {
       FileOutputStream out = new FileOutputStream(tempFile);

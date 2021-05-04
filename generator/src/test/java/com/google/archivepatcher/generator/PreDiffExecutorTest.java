@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -85,7 +86,7 @@ public class PreDiffExecutorTest {
    * @throws IOException if anything goes wrong
    */
   private File newTempFile() throws IOException {
-    File file = File.createTempFile("pdet", "bin");
+    File file = Files.createTempFile("pdet", "bin").toFile();
     tempFilesCreated.add(file);
     file.deleteOnExit();
     return file;

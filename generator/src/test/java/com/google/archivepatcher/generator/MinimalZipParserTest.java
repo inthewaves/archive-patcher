@@ -28,6 +28,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.CRC32;
@@ -69,7 +70,7 @@ public class MinimalZipParserTest {
     // Create a temp file with some zeroes, the EOCD header, and more zeroes.
     int bytesBefore = 53754;
     int bytesAfter = 107;
-    File tempFile = File.createTempFile("MinimalZipParserTest", "zip");
+    File tempFile = Files.createTempFile("MinimalZipParserTest", "zip").toFile();
     tempFile.deleteOnExit();
     try {
       FileOutputStream out = new FileOutputStream(tempFile);
@@ -97,7 +98,7 @@ public class MinimalZipParserTest {
   @Test
   public void testLocateStartOfEocd_WithFile_NoEocd() throws IOException {
     // Create a temp file with some zeroes and no EOCD header at all
-    File tempFile = File.createTempFile("MinimalZipParserTest", "zip");
+    File tempFile = Files.createTempFile("MinimalZipParserTest", "zip").toFile();
     tempFile.deleteOnExit();
     try {
       FileOutputStream out = new FileOutputStream(tempFile);

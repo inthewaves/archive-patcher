@@ -24,6 +24,7 @@ import org.junit.runners.JUnit4;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 
 /**
  * Tests for {@link RandomAccessFileInputStreamFactory}.
@@ -52,7 +53,7 @@ public class RandomAccessFileInputStreamFactoryTest {
     for (int x = 0; x < 128; x++) {
       testData[x] = (byte) x;
     }
-    tempFile = File.createTempFile("ra-fist", "tmp");
+    tempFile = Files.createTempFile("ra-fist", "tmp").toFile();
     FileOutputStream out = new FileOutputStream(tempFile);
     out.write(testData);
     out.flush();

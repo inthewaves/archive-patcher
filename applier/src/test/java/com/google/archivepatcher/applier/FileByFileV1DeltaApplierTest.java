@@ -35,6 +35,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -114,10 +115,10 @@ public class FileByFileV1DeltaApplierTest {
     // 2. The new file, in memory only (for comparing results at the end).
     // 3. The patch, in memory.
 
-    File tempFile = File.createTempFile("foo", "bar");
+    File tempFile = Files.createTempFile("foo", "bar").toFile();
     tempDir = tempFile.getParentFile();
     tempFile.delete();
-    oldFile = File.createTempFile("fbfv1dat", "old");
+    oldFile = Files.createTempFile("fbfv1dat", "old").toFile();
     oldFile.deleteOnExit();
 
     // Write the old file to disk:

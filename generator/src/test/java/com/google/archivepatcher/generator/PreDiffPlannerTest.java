@@ -26,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -119,7 +120,7 @@ public class PreDiffPlannerTest {
    * @throws IOException if it fails
    */
   private File storeAndMapArchive(byte[] data) throws IOException {
-    File file = File.createTempFile("pdpt", "zip");
+    File file = Files.createTempFile("pdpt", "zip").toFile();
     tempFilesCreated.add(file);
     file.deleteOnExit();
     FileOutputStream out = new FileOutputStream(file);

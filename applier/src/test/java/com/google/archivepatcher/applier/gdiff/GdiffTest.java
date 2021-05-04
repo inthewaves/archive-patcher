@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
 import java.util.Random;
 import org.junit.Assert;
 import org.junit.Test;
@@ -52,7 +53,7 @@ public class GdiffTest {
         0 };                                                           // EOF
 
     // Create "input file".
-    File inputFile = File.createTempFile("testExample", null);
+    File inputFile = Files.createTempFile("testExample", null).toFile();
     FileOutputStream writeInputFile = new FileOutputStream(inputFile);
     writeInputFile.write(oldBytes);
     writeInputFile.close();
@@ -101,7 +102,7 @@ public class GdiffTest {
         0 };                                                             // EOF
 
     // Create "input file".
-    File inputFile = File.createTempFile("testExample", null);
+    File inputFile = Files.createTempFile("testExample", null).toFile();;
     FileOutputStream writeInputFile = new FileOutputStream(inputFile);
     writeInputFile.write(oldBytes);
     writeInputFile.close();
@@ -124,7 +125,7 @@ public class GdiffTest {
   @Test
   public void testInlineDataCommands() throws IOException {
     // We never read "input" so create an single, empty one.
-    File inputFile = File.createTempFile("testExample", null);
+    File inputFile = Files.createTempFile("testExample", null).toFile();;
     FileOutputStream writeInputFile = new FileOutputStream(inputFile);
     writeInputFile.close();
     RandomAccessFile readInputFile = new RandomAccessFile(inputFile, "r");
@@ -309,7 +310,7 @@ public class GdiffTest {
       inputLimit = inputBytes.length;
     }
     // Create "input file".
-    File inputFile = File.createTempFile("testExample", null);
+    File inputFile = Files.createTempFile("testExample", null).toFile();;
     FileOutputStream writeInputFile = new FileOutputStream(inputFile);
     writeInputFile.write(inputBytes, 0, inputLimit);
     writeInputFile.close();

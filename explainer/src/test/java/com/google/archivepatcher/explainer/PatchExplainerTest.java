@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import org.junit.After;
@@ -135,8 +136,8 @@ public class PatchExplainerTest {
 
   @Before
   public void setup() throws IOException {
-    oldFile = File.createTempFile("patchexplainertest", "old");
-    newFile = File.createTempFile("patchexplainertest", "new");
+    oldFile = Files.createTempFile("patchexplainertest", "old").toFile();
+    newFile = Files.createTempFile("patchexplainertest", "new").toFile();;
   }
 
   @After

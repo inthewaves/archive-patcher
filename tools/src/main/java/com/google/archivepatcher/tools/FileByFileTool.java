@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -212,7 +213,7 @@ public class FileByFileTool extends AbstractTool {
    */
   public static void applyPatch(File oldFile, File patchFile, File newFile) throws IOException {
     // Figure out temp directory
-    File tempFile = File.createTempFile("fbftool", "tmp");
+    File tempFile = Files.createTempFile("fbftool", "tmp").toFile();
     File tempDir = tempFile.getParentFile();
     tempFile.delete();
     FileByFileV1DeltaApplier applier = new FileByFileV1DeltaApplier(tempDir);

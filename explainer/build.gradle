@@ -5,7 +5,7 @@ dependencies {
     compile project(':generator')
     compile project(':shared')
 
-    testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.13.2'
     testCompile project(':sharedtest')
 }
 // EOF

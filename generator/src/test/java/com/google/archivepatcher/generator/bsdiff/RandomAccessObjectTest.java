@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
+import java.nio.file.Files;
 
 @RunWith(JUnit4.class)
 public class RandomAccessObjectTest {
@@ -173,7 +174,7 @@ public class RandomAccessObjectTest {
 
   @Test
   public void fileWriteByteToEmptyFileTest() throws IOException {
-    File tmpFile = File.createTempFile("RandomAccessObjectTest", "temp");
+    File tmpFile = Files.createTempFile("RandomAccessObjectTest", "temp").toFile();
 
     try (RandomAccessObject obj = new RandomAccessObject.RandomAccessFileObject(tmpFile, "rw")) {
       for (int x = 0; x < BLOB.length; x++) {
@@ -256,7 +257,7 @@ public class RandomAccessObjectTest {
 
   @Test
   public void mmapWriteByteToEmptyFileTest() throws IOException {
-    File tmpFile = File.createTempFile("RandomAccessObjectTest", "temp");
+    File tmpFile = Files.createTempFile("RandomAccessObjectTest", "temp").toFile();
 
     try (RandomAccessObject obj =
         new RandomAccessObject.RandomAccessMmapObject(new RandomAccessFile(tmpFile, "rw"), "rw")) {
@@ -604,7 +605,7 @@ public class RandomAccessObjectTest {
   private File storeInTempFile(InputStream content) throws IOException {
     File tmpFile = null;
     try {
-      tmpFile = File.createTempFile("RandomAccessObjectTest", "temp");
+      tmpFile = Files.createTempFile("RandomAccessObjectTest", "temp").toFile();
       tmpFile.deleteOnExit();
       FileOutputStream out = new FileOutputStream(tmpFile);
       byte[] buffer = new byte[32768];

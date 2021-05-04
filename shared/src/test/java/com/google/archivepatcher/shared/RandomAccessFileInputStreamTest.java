@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
 
 /**
  * Tests for {@link RandomAccessFileInputStream}.
@@ -54,7 +55,7 @@ public class RandomAccessFileInputStreamTest {
     for (int x = 0; x < 128; x++) {
       testData[x] = (byte) x;
     }
-    tempFile = File.createTempFile("ra-fist", "tmp");
+    tempFile = Files.createTempFile("ra-fist", "tmp").toFile();
     tempFile.deleteOnExit();
     try {
       FileOutputStream out = new FileOutputStream(tempFile);

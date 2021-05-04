@@ -21,6 +21,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Applies V1 patches.
@@ -67,7 +70,7 @@ public class FileByFileV1DeltaApplier implements DeltaApplier {
       // will fail when it tries to create the file in a few more lines anyways.
       tempDir.mkdirs();
     }
-    File tempFile = File.createTempFile("gfbfv1", "old", tempDir);
+    File tempFile = Files.createTempFile(tempDir.toPath(), "gfbfv1", "old").toFile();
     try {
       applyDeltaInternal(oldBlob, tempFile, deltaIn, newBlobOut);
     } finally {

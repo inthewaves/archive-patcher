@@ -31,6 +31,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 
@@ -83,7 +84,7 @@ public class PatchWriterTest {
   @Before
   public void setup() throws IOException {
     buffer = new ByteArrayOutputStream();
-    deltaFile = File.createTempFile("patchwritertest", "delta");
+    deltaFile = Files.createTempFile("patchwritertest", "delta").toFile();
     deltaFile.deleteOnExit();
     try (FileOutputStream out = new FileOutputStream(deltaFile)) {
       out.write(DELTA_CONTENT.getBytes());
