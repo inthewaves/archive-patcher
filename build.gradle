@@ -27,7 +27,7 @@ jar {
     manifest {
         attributes 'Implementation-Title': 'Archive Patcher',
         	'Implementation-Version': version,
-            'Implementation-Vendor': 'https://github.com/andrewhayden/archive-patcher'
+            'Implementation-Vendor': 'https://github.com/inthewaves/archive-patcher'
     }
     baseName = project.name
     subprojects.each { subproject ->
@@ -40,7 +40,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     manifest {
         attributes 'Implementation-Title': 'Archive Patcher',
         	'Implementation-Version': version,
-            'Implementation-Vendor': 'https://github.com/andrewhayden/archive-patcher'
+            'Implementation-Vendor': 'https://github.com/inthewaves/archive-patcher'
     }
     baseName = project.name
     classifier = 'sources'
@@ -54,7 +54,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     manifest {
         attributes 'Implementation-Title': 'Archive Patcher',
         	'Implementation-Version': version,
-            'Implementation-Vendor': 'https://github.com/andrewhayden/archive-patcher'
+            'Implementation-Vendor': 'https://github.com/inthewaves/archive-patcher'
     }
     baseName = project.name
     classifier = 'javadoc'
