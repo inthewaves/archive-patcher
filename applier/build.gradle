@@ -41,7 +41,7 @@ publishing {
     }
 
     publications {
-        myLibrary(MavenPublication) {
+        applier(MavenPublication) {
             from components.java
             groupId 'pm.inthewaves'
             artifactId 'archive-patcher-applier'

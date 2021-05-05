@@ -19,9 +19,5 @@ jobs:
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Publish full library
+    - name: Publish full library and standalone library
       run: ./gradlew publishAllPublicationsToGitHubPackagesRepository
-    - name: Publish applier
-      run: ./gradlew applier:publishAllPublicationsToGitHubPackagesRepository
-    - name: Publish generator
-      run: ./gradlew generator:publishAllPublicationsToGitHubPackagesRepository
