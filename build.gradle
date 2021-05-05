@@ -1,3 +1,6 @@
+ext {
+    archivePatcherVersion = "1.0"
+}
 
 buildscript {
     repositories {
@@ -16,7 +19,7 @@ apply plugin: 'maven-publish'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = 1.0
+version = archivePatcherVersion
 
 subprojects.each { subproject -> evaluationDependsOn( subproject.path ) }
 jar.dependsOn subprojects.tasks['classes']
@@ -47,7 +50,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from "LICENSE"
 }
 
-task javadocJar (type: Jar, dependsOn: javadoc) {
+task javadocJar(type: Jar, dependsOn: javadoc) {
     manifest {
         attributes 'Implementation-Title': 'Archive Patcher',
         	'Implementation-Version': version,

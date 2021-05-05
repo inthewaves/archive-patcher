@@ -2,6 +2,24 @@
 
 apply plugin: 'java'
 
+jar {
+    // include the shared project in the jar
+    from {
+        configurations.runtimeClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    manifest {
+        attributes 'Implementation-Title': 'Archive Patcher applier',
+                'Implementation-Version': archivePatcherVersion,
+                'Implementation-Vendor': 'https://github.com/inthewaves/archive-patcher'
+    }
+    archivesBaseName = parent.name + "-applier-" + archivePatcherVersion
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 dependencies {
     compile project(':shared')
 
