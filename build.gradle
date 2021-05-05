@@ -1,5 +1,5 @@
 ext {
-    archivePatcherVersion = "1.0.2"
+    archivePatcherVersion = "1.0.3"
 }
 
 buildscript {
