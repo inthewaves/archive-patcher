@@ -74,6 +74,7 @@ public class Gdiff {
    * @param output output stream to write the file to
    * @param expectedOutputSize expected size of the output.
    * @throws IOException on file I/O as well as when patch under/over run happens.
+   * @return the output size
    */
   public static long patch(
       RandomAccessFile inputFile,
